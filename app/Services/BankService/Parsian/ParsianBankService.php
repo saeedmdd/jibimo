@@ -13,7 +13,7 @@ class ParsianBankService implements BankServiceInterface
      * @param string|null $cardNumber
      * @return string
      */
-    public function getBalance(?string $cardNumber = null): string
+    public function getBalance(?string $cardNumber = null, string|null $shabaNumber = null): string
     {
         try {
             $response = file_get_contents(base_path("app/Services/BankService/Parsian/parsian.json"));
@@ -37,19 +37,18 @@ class ParsianBankService implements BankServiceInterface
 
             Http::fake(["parsian.ir" => Http::response(["message" => "$amount added to $cardNumber"])]);
             return $amount;
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 
     }
 
-    public function withdraw(string $shabaNum, int $amount): string
+    public function withdraw(string $shabaNum, int $amount, string $to): string
     {
         try {
             Http::fake(["parsian.ir" => Http::response(["message" => "$amount decreased from $shabaNum"])]);
             return -1 * $amount;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 

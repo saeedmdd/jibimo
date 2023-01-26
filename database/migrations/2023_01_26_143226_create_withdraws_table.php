@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->string("bank")->index();
             $table->integer("amount");
-            $table->string("transaction_id");
-            $table->string("token");
-            $table->enum("type", ["pay", "withdraw"]);
+            $table->string("transaction_id")->nullable();
+            $table->string("token")->nullable();
+            $table->enum("type", ["pay", "withdraw"])->index();
             $table->timestamps();
         });
     }

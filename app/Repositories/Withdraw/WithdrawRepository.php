@@ -7,6 +7,8 @@ use App\Repositories\BaseRepository;
 
 class WithdrawRepository extends BaseRepository
 {
+    const PAY = "pay";
+    const WITHDRAW =  "withdraw";
     public function __construct(Withdraw $model)
     {
         $this->model = $model;

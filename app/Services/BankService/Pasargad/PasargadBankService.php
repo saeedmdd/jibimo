@@ -38,19 +38,18 @@ class PasargadBankService implements BankServiceInterface
 
             Http::fake(["pasargad.ir" => Http::response(["message" => "$amount added to $cardNumber"])]);
             return $amount;
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 
     }
 
-    public function withdraw(string $shabaNum, int $amount): string
+    public function withdraw(string $shabaNum, int $amount, string $to): string
     {
         try {
             Http::fake(["pasargad.ir" => Http::response(["message" => "$amount decreased from $shabaNum"])]);
             return -1 * $amount;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 
