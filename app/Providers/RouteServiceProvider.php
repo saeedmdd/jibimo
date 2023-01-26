@@ -35,6 +35,8 @@ class RouteServiceProvider extends ServiceProvider
                     Route::group(["prefix" => "v1"], function (){
                         Route::middleware('guest')
                             ->group(base_path('routes/api/v1/auth.php'));
+                        Route::prefix("bank")->middleware("auth:sanctum")
+                            ->group(base_path("routes/api/v1/bank.php"));
                     });
                 });
 
